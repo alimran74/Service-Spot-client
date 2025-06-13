@@ -1,5 +1,6 @@
 import Banner from "../components/home/Banner";
-import Community from "../components/home/Community";
+import CountUpStats from "../components/home/CountUpStats";
+
 import Featured from "../components/home/Featured";
 import MeetOurPartners from "../components/home/MeetOurPartners";
 import PricingSection from "../components/home/PricingSection";
@@ -15,8 +16,9 @@ const Home = () => {
             <Featured/>
             <PricingSection/>
             <MeetOurPartners/>
+            <CountUpStats/>
             <SystemWork/>
-            <Community/>
+            
             
         </div>
     );

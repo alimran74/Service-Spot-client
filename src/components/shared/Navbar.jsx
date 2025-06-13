@@ -1,10 +1,10 @@
 import React from 'react';
+import { FaBars } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const Navbar = () => {
     return (
-        <div>
-            <h1>this is navbar</h1>
-        </div>
+      <div></div>
     );
 };
 

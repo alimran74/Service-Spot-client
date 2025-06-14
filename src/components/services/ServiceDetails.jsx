@@ -1,50 +1,12 @@
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router';
-
-// const ServiceDetails = () => {
-//   const { id } = useParams();
-//   const [service, setService] = useState(null);
-
-//   useEffect(() => {
-//     fetch(`http://localhost:5000/services/${id}`)
-//       .then(res => res.json())
-//       .then(data => setService(data));
-//   }, [id]);
-
-//   if (!service) return <p className="text-center mt-20">Loading service...</p>;
-
-//   const { image, title, description, price, company, category,addedDate,website } = service;
-
-//   return (
-//     <div className="min-h-screen bg-[#8ECAE6] py-12 px-4">
-//   <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
-//     <img src={image} alt={title} className="w-full h-64 object-cover rounded-lg mb-6" />
-//     <h2 className="text-3xl font-bold text-[#023047] mb-4">{title}</h2>
-//     <p className="text-gray-700 mb-4">{description}</p>
-//     <div className="space-y-2 text-[#333]">
-//       <p><strong>Company:</strong> {company}</p>
-//       <p><strong>Category:</strong> {category}</p>
-//       <p><strong>Create Date:</strong> {new Date(addedDate).toLocaleDateString()}</p>
-//       <p>
-//         <strong>Website:</strong>{" "}
-//         <a href={website} target="_blank" className="text-blue-600 underline">{website}</a>
-//       </p>
-//       <p className="text-xl font-bold text-[#FB8500] mt-4"> {price} BDT</p>
-//     </div>
-//   </div>
-// </div>
-
-//   );
-// };
-
-// export default ServiceDetails;
 
 import React, { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router';
-import { AuthContext } from '../../context/AuthContext'; // adjust path based on your project
+import { AuthContext } from '../../context/AuthContext'; 
 import { toast } from 'react-toastify';
 import Rating from 'react-rating';
 import { FaStar, FaRegStar } from 'react-icons/fa';
+
 
 const ServiceDetails = () => {
   const { id } = useParams();
@@ -57,14 +19,14 @@ const ServiceDetails = () => {
 
   // Fetch service data
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${id}`)
-      .then(res => res.json())
-      .then(data => setService(data));
+    axios.get(`http://localhost:5000/services/${id}`)
+    .then(res => setService(res.data))
+    .catch(err => console.error('Service fetch error:', err));
 
-    fetch(`http://localhost:5000/reviews/${id}`)
-      .then(res => res.json())
-      .then(data => setReviews(data));
-  }, [id]);
+    axios.get(`http://localhost:5000/reviews/${id}`)
+    .then(res => setReviews(res.data))
+    .catch(err => console.error('Reviews fetch error:', err));
+}, [id]);
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();

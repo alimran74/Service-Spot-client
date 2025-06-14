@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext'; // adjust path if needed
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+
 
 
 const AllServices = () => {
@@ -12,9 +14,9 @@ const navigate = useNavigate();
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/services') 
-      .then(res => res.json())
-      .then(data => setServices(data));
+     axios.get('http://localhost:5000/services')
+    .then(res => setServices(res.data))
+    .catch(error => console.error('Error fetching services:', error));
   }, []);
 
   return (

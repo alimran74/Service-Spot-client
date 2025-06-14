@@ -60,13 +60,13 @@ const Banner = () => {
             alt={`Slide ${index + 1}`}
           />
           
-          {/* Overlay Content */}
+          
           <div className="absolute inset-0  flex flex-col justify-center items-start px-6 md:px-16 text-[#023047]">
             <h2 className="text-2xl md:text-4xl font-bold mb-2">{slide.title}</h2>
             <p className="text-xl md:text-lg max-w-xl">{slide.subtitle}</p>
           </div>
 
-          {/* Navigation Buttons */}
+          
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
             <button onClick={prevSlide} className="btn btn-circle bg-[#023047] text-white border-none">❮</button>
             <button onClick={nextSlide} className="btn btn-circle bg-[#023047] text-white border-none">❯</button>

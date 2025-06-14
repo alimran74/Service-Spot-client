@@ -3,6 +3,7 @@ import { Outlet } from 'react-router';
 import Navbar from '../components/shared/Navbar';
 import Footer from '../components/shared/Footer';
 import { ToastContainer } from 'react-toastify';
+import Loader from '../pages/Loader';
 
 const MainLayout = () => {
     return (

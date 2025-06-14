@@ -4,6 +4,13 @@ import MainLayout from "../layouts/MainLayout";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Error from "../pages/Error";
+import AllServices from "../components/services/AllServices";
+import AuthLayout from "../layouts/AuthLayout";
+import PrivateRoute from "./PrivateRouter";
+import AddService from "../components/services/AddService";
+import MyServices from "../components/services/MyServices";
+import MyReview from "../components/services/MyReview";
+import ServiceCard from "../components/services/ServiceCard";
 
 const router = createBrowserRouter([
   {
@@ -22,9 +29,50 @@ const router = createBrowserRouter([
       {
         path:'/login',
         Component: Login,
+      },
+      {
+        path:'/allServices',
+        element: <AllServices/>
+      },
+      {
+        path:'/services/:id',
+        element: <ServiceCard/>
+      },
+      {
+        
       }
     ],
   },
+  {
+    path: '/auth',
+    element: <AuthLayout/>,
+    children:[
+      {
+        path:'/auth/addServices',
+        element:(
+          <PrivateRoute>
+            <AddService/>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/auth/myServices',
+        element:(
+          <PrivateRoute>
+            <MyServices/>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path:'/auth/myReview',
+        element:(
+          <PrivateRoute>
+            <MyReview/>
+          </PrivateRoute>
+        )
+      }
+    ]
+  }
 ]);
 
 export default router;

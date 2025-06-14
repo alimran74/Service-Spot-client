@@ -38,7 +38,7 @@ const MeetOurPartners = () => {
   return (
     <section className="bg-[#219EBC] py-16 px-4 sm:px-6 lg:px-8 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet Our Partners</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#023047]">Meet Our Partners</h2>
         <p className="text-lg max-w-2xl mx-auto">We proudly collaborate with these industry leaders who help us deliver the best services.</p>
       </div>
       <motion.div

@@ -34,9 +34,9 @@ const Login = () => {
       });
   };
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4 bg-purple-100">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <h1 className="font-semibold text-2xl text-center py-5 text-purple-600">
+    <div className="flex items-center justify-center min-h-screen p-4 bg-[#8ECAE6]">
+      <div className="card w-full max-w-sm shrink-0 shadow-2xl bg-[#219EBC]">
+        <h1 className="font-semibold text-2xl text-center pt-5 text-white">
           Login to Your Account
         </h1>
         <form onSubmit={handleLogIn} className="card-body">
@@ -64,7 +64,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="btn btn-neutral mt-4 w-full  bg-purple-600 hover:bg-purple-700 "
+              className="btn btn-neutral mt-4 w-full  bg-[#023047] hover:bg-[#6284e2d7] "
             >
               Login
             </button>
@@ -107,7 +107,7 @@ const Login = () => {
 
             <p className="font-semibold text-center pt-6">
               Don't have An Account ?{" "}
-              <Link className="text-blue-500" to="/register">
+              <Link className="text-white  hover:text-[#ffd903f1]" to="/register">
                 Register
               </Link>
             </p>

@@ -1,6 +1,5 @@
-// AuthProvider.jsx
 import React, { useEffect, useState } from 'react';
-import { AuthContext } from './AuthContext'; // correct path use kor
+import { AuthContext } from './AuthContext'; // 
 
 import app from "../firebase/firebase.init";
 import { 
@@ -20,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const createUser = (email, password) => {
+  const createUser = (auth ,email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };

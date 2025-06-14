@@ -50,7 +50,9 @@ const PricingSection = () => {
         {plans.map((plan, idx) => (
           <div
             key={idx}
-            className={`${plan.bg} shadow rounded-lg p-6 flex flex-col justify-between`}
+            className={`${plan.bg} shadow rounded-lg p-6 flex flex-col justify-between transform transition-transform duration-300 hover:scale-105 hover:shadow-lg`}
+
+
           >
             <div className="flex flex-col items-center text-center mb-6">
               <img src={plan.icon} alt={plan.name} className="h-16 w-16 mb-4" />

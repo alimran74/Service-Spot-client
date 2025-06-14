@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext'; 
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+
 
 const Featured = () => {
+  const { user } = useContext(AuthContext);
+const navigate = useNavigate();
+
   const [services, setServices] = useState([]);
 
   useEffect(() => {
@@ -21,11 +29,19 @@ const Featured = () => {
               <h3 className="text-xl font-semibold text-[#023047]">{service.title}</h3>
               <p className="text-gray-600 mb-2">{service.description.slice(0, 100)}...</p>
               <p className="text-lg font-bold text-[#219EBC]">৳ {service.price}</p>
-              <Link to={`/services/${service._id}`}>
-                <button className="mt-4 btn bg-[#023047] hover:bg-[#FFB703] text-white font-semibold">
-                  See Details
-                </button>
-              </Link>
+              <button
+  onClick={() => {
+    if (!user) {
+      toast.warning('🛑 Please login to view details!');
+    } else {
+      navigate(`/services/${service._id}`);
+    }
+  }}
+  className="mt-4 btn bg-[#023047] hover:bg-[#FFB703] text-white w-full"
+>
+  See Details
+</button>
+
             </div>
           </div>
         ))}

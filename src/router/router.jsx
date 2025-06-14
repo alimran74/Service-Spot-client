@@ -10,7 +10,8 @@ import PrivateRoute from "./PrivateRouter";
 import AddService from "../components/services/AddService";
 import MyServices from "../components/services/MyServices";
 import MyReview from "../components/services/MyReview";
-import ServiceCard from "../components/services/ServiceCard";
+
+import ServiceDetails from "../components/services/ServiceDetails";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/services/:id',
-        element: <ServiceCard/>
+        element: <ServiceDetails/>
       },
       {
         

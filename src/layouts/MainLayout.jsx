@@ -5,6 +5,7 @@ import Footer from '../components/shared/Footer';
 import { ToastContainer } from 'react-toastify';
 import Loader from '../pages/Loader';
 import ClickSpark from '../components/shared/ClickSpark';
+import FadeContent from '../components/shared/FadeContent';
 
 
 const MainLayout = () => {
@@ -15,9 +16,13 @@ const MainLayout = () => {
             <ToastContainer position='top-center' ></ToastContainer>
             {navigation.state === "loading" && <Loader/>}
             <div className='min-h-[calc(100vh-116px)]'>
-                <ClickSpark>
+                
+                    <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
+                        <ClickSpark>
                     <Outlet/>
-                </ClickSpark>
+                    </ClickSpark>
+                    </FadeContent>
+                
                 
             </div>
             <Footer/>

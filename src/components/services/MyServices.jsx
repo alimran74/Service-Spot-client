@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const MyServices = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,6 @@ const MyServices = () => {
   const [updatedData, setUpdatedData] = useState({});
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
-  // Fetch services created by current user
   useEffect(() => {
     if (user?.email) {
       axios
@@ -21,30 +21,39 @@ const MyServices = () => {
     }
   }, [user]);
 
-  // Delete service
-  const handleDelete = (id) => {
-    const confirm = window.confirm("Are you sure you want to delete this service?");
-    if (!confirm) return;
+const handleDelete = (id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "This service will be permanently deleted!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .delete(`http://localhost:5000/services/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "Your service has been deleted.", "success");
+            setServices((prev) => prev.filter((s) => s._id !== id));
+          } else {
+            toast.error("Delete failed");
+          }
+        })
+        .catch(() => toast.error("Delete failed"));
+    }
+  });
+};
 
-    axios
-      .delete(`http://localhost:5000/services/${id}`)
-      .then((res) => {
-        if (res.data.deletedCount > 0) {
-          toast.success("Service deleted!");
-          setServices(services.filter((s) => s._id !== id));
-        }
-      })
-      .catch(() => toast.error("Delete failed"));
-  };
 
-  // Open update modal
   const openUpdateModal = (service) => {
     setSelectedService(service);
     setUpdatedData(service);
     setIsUpdateModalOpen(true);
   };
 
-  // Update service
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -59,15 +68,12 @@ const MyServices = () => {
         updatedData
       );
 
-      // Check modifiedCount inside result or direct response
       const modifiedCount =
         res.data.modifiedCount ?? res.data.result?.modifiedCount ?? 0;
 
       if (modifiedCount > 0) {
         toast.success("Service updated!");
         setIsUpdateModalOpen(false);
-
-        // Update local services state
         setServices((prev) =>
           prev.map((s) => (s._id === selectedService._id ? { ...s, ...updatedData } : s))
         );
@@ -81,59 +87,97 @@ const MyServices = () => {
   };
 
   return (
-    <div className="p-6 min-h-screen bg-[#4598e6]">
-      <h2 className="text-2xl font-bold mb-6">My Services ({services.length})</h2>
+    <div className="p-6 min-h-screen bg-[#8ECAE6]">
+      <h2 className="text-3xl font-extrabold mb-6 text-center text-[#023047]">
+        My Services ({services.length})
+      </h2>
 
+      {/* Responsive table container */}
       <div className="overflow-x-auto bg-white rounded-xl shadow-lg">
-        <table className="table w-full">
-          <thead className="bg-[#219EBC] text-white">
-            <tr>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Date</th>
-              <th>Actions</th>
+        <table className="min-w-full border-collapse block md:table">
+          <thead className="block md:table-header-group bg-[#219EBC] text-white sticky top-0 z-10">
+            <tr className="block md:table-row">
+              <th className="p-3 text-left font-semibold text-sm md:border md:border-white md:table-cell">
+                Title
+              </th>
+              <th className="p-3 text-left font-semibold text-sm md:border md:border-white md:table-cell">
+                Price
+              </th>
+              <th className="p-3 text-left font-semibold text-sm md:border md:border-white md:table-cell">
+                Category
+              </th>
+              <th className="p-3 text-left font-semibold text-sm md:border md:border-white md:table-cell">
+                Date
+              </th>
+              <th className="p-3 text-center font-semibold text-sm md:border md:border-white md:table-cell">
+                Actions
+              </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="block md:table-row-group">
             {services.map((s) => (
-              <tr key={s._id}>
-                <td>{s.title}</td>
-                <td>৳ {s.price}</td>
-                <td>{s.category}</td>
-                <td>{new Date(s.addedDate).toLocaleDateString()}</td>
-                <td className="flex gap-2">
+              <tr
+                key={s._id}
+                className="bg-white border mb-4 md:mb-0 md:border-none block md:table-row hover:bg-[#e0f2fe]"
+              >
+                <td className="p-3 text-left text-sm md:border md:border-gray-200 md:table-cell" data-label="Title">
+                  {s.title}
+                </td>
+                <td className="p-3 text-left text-sm md:border md:border-gray-200 md:table-cell" data-label="Price">
+                  ৳ {s.price}
+                </td>
+                <td className="p-3 text-left text-sm md:border md:border-gray-200 md:table-cell" data-label="Category">
+                  {s.category}
+                </td>
+                <td className="p-3 text-left text-sm md:border md:border-gray-200 md:table-cell" data-label="Date">
+                  {new Date(s.addedDate).toLocaleDateString()}
+                </td>
+                <td
+                  className="p-3 text-center text-sm flex justify-center gap-2 md:border md:border-gray-200 md:table-cell"
+                  data-label="Actions"
+                >
                   <button
                     onClick={() => openUpdateModal(s)}
-                    className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white"
+                    aria-label={`Edit ${s.title}`}
+                    className="btn btn-sm bg-blue-600 hover:bg-blue-700 text-white rounded-md px-3 py-1 flex items-center justify-center transition-colors duration-200"
                   >
                     <FaEdit />
                   </button>
                   <button
                     onClick={() => handleDelete(s._id)}
-                    className="btn btn-sm bg-red-500 hover:bg-red-600 text-white"
+                    aria-label={`Delete ${s.title}`}
+                    className="btn btn-sm bg-red-600 hover:bg-red-700 text-white rounded-md px-3 py-1 flex items-center justify-center transition-colors duration-200"
                   >
                     <FaTrash />
                   </button>
                 </td>
               </tr>
             ))}
+            {services.length === 0 && (
+              <tr className="block md:table-row">
+                <td colSpan="5" className="p-4 text-center text-gray-600 md:table-cell">
+                  No services found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
 
       {/* Update Modal */}
       {isUpdateModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 p-4">
           <form
             onSubmit={handleUpdate}
-            className="bg-white p-6 rounded-lg w-[90%] md:w-[500px] shadow-xl"
+            className="bg-white p-6 rounded-lg w-full max-w-md shadow-xl"
           >
-            <h3 className="text-xl font-bold mb-4">Update Service</h3>
+            <h3 className="text-2xl font-semibold mb-5 text-center text-[#023047]">
+              Update Service
+            </h3>
 
             <input
               type="text"
-              className="input input-bordered w-full mb-3"
+              className="input input-bordered w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
               placeholder="Title"
               value={updatedData.title || ""}
               onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
@@ -141,8 +185,9 @@ const MyServices = () => {
             />
 
             <input
-              type="text"
-              className="input input-bordered w-full mb-3"
+              type="number"
+              min="0"
+              className="input input-bordered w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
               placeholder="Price"
               value={updatedData.price || ""}
               onChange={(e) => setUpdatedData({ ...updatedData, price: e.target.value })}
@@ -151,23 +196,23 @@ const MyServices = () => {
 
             <input
               type="text"
-              className="input input-bordered w-full mb-3"
+              className="input input-bordered w-full mb-6 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
               placeholder="Category"
               value={updatedData.category || ""}
               onChange={(e) => setUpdatedData({ ...updatedData, category: e.target.value })}
               required
             />
 
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between">
               <button
                 type="submit"
-                className="btn bg-green-600 text-white hover:bg-green-700"
+                className="btn bg-green-600 text-white hover:bg-green-700 px-4 py-2 rounded-md font-semibold transition-colors duration-200"
               >
                 Update
               </button>
               <button
                 type="button"
-                className="btn bg-gray-400 text-white"
+                className="btn bg-gray-400 text-white px-4 py-2 rounded-md font-semibold"
                 onClick={() => setIsUpdateModalOpen(false)}
               >
                 Cancel

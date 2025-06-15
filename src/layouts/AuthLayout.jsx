@@ -8,11 +8,12 @@ const AuthLayout = () => {
   return (
     <div>
       <Navbar />
+      <ToastContainer position="top-center"></ToastContainer>
       <div className="min-h-[calc(100vh-116px)]">
         <Outlet />
       </div>
       <Footer />
-      <ToastContainer position="top-center"></ToastContainer>
+      
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import Banner from "../components/home/Banner";
 import CountUpStats from "../components/home/CountUpStats";
+import FAQ from "../components/home/FAQ";
 
 import Featured from "../components/home/Featured";
 import MeetOurPartners from "../components/home/MeetOurPartners";
@@ -18,6 +19,7 @@ const Home = () => {
             <MeetOurPartners/>
             <CountUpStats/>
             <SystemWork/>
+            <FAQ/>
             
             
         </div>

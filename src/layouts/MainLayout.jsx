@@ -9,7 +9,7 @@ const MainLayout = () => {
     return (
         <div>
             <Navbar/>
-            <ToastContainer position='top-center'></ToastContainer>
+            <ToastContainer position='top-center' ></ToastContainer>
             {navigation.state === "loading" && <Loader/>}
             <div className='min-h-[calc(100vh-116px)]'>
                 <Outlet/>

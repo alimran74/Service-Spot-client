@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router"; // Fixed: useRouter -> useNavigate from react-router-dom
+import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
 import Lottie from "lottie-react";
 import loginAnimation from "../assets/login-animation.json";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { signIn, signInWithGoogle } = useContext(AuthContext); // ✅ Correct hook
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
 
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     signIn(email, password)
-      .then((result) => {
+      .then(() => {
         toast.success("✅ Login successful");
         navigate("/");
       })
@@ -42,29 +43,35 @@ const Login = () => {
         <Lottie animationData={loginAnimation} loop={true} />
       </div>
 
-      {/* Login Form */}
-      <div className="card w-full max-w-sm bg-[#219EBC] shadow-2xl rounded-xl">
+      {/* Login Form with Motion */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="card w-full max-w-sm bg-[#219EBC] shadow-2xl rounded-xl"
+      >
         <h1 className="text-3xl font-bold text-center pt-6 text-white">
           Login to Your Account
         </h1>
+
         <form onSubmit={handleLogIn} className="card-body">
           <fieldset className="space-y-4">
             {/* Email */}
-            <label className="label text-white">Email</label>
+            <label className="label text-gray-600">Email</label>
             <input
               name="email"
               type="email"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-white border border-gray-400 text-white placeholder-gray-800"
               placeholder="Enter your email"
               required
             />
 
             {/* Password */}
-            <label className="label text-white">Password</label>
+            <label className="label text-gray-600">Password</label>
             <input
               name="password"
               type="password"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-white border border-gray-400 text-white placeholder-gray-800"
               placeholder="Enter your password"
               required
             />
@@ -129,7 +136,7 @@ const Login = () => {
             </p>
           </fieldset>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };

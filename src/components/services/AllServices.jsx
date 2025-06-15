@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router";
 import { toast } from "react-toastify";
 import { debounce } from "lodash";
 
+
 const AllServices = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ const AllServices = () => {
 
   return (
     <div className="bg-[#8ECAE6] px-4 py-12 min-h-screen">
+      
       <h2 className="text-4xl font-bold text-center mb-6 text-[#023047]">🛠 All Services</h2>
 
       {/* Search + Filter */}

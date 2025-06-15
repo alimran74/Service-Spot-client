@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router"; // Fixed import
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import Lottie from "lottie-react";
+import { motion } from "framer-motion";
 import registerAnimation from "../assets/register-animation.json";
 
 const Register = () => {
@@ -18,19 +19,19 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const password = form.password.value;
 
-    // Password Validation
     const uppercase = /[A-Z]/.test(password);
     const lowercase = /[a-z]/.test(password);
 
     if (!uppercase || !lowercase || password.length < 6) {
-      setError("Password must have uppercase, lowercase and be at least 6 characters long.");
+      setError(
+        "Password must have uppercase, lowercase and be at least 6 characters long."
+      );
       toast.error("❌ Password must have uppercase, lowercase and 6+ characters.");
       return;
     }
 
-    // Firebase Register
     createUser(email, password)
-      .then((result) => {
+      .then(() => {
         updateUserProfile(name, photoURL)
           .then(() => {
             toast.success("✅ Registration Successful!");
@@ -47,69 +48,80 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#8ECAE6] flex flex-col md:flex-row items-center justify-center px-4 py-10 gap-10">
-      
-      {/* Lottie Animation */}
+    <div className="min-h-screen bg-[#8ECAE6] flex flex-col md:flex-row items-center justify-center px-4 py-10 gap-8">
+      {/* Animation */}
       <div className="w-full md:w-1/2 max-w-md">
         <Lottie animationData={registerAnimation} loop={true} />
       </div>
 
-      {/* Registration Form */}
-      <form
+      
+      <motion.form
         onSubmit={handleRegister}
-        className="bg-[#219EBC] w-full max-w-md p-6 rounded-lg shadow-lg"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-md bg-[#219EBC] shadow-2xl rounded-xl p-8 shadow-lg"
       >
-        <h2 className="text-3xl font-bold text-center mb-6 text-white">
+        <h2 className="text-3xl font-bold text-center mb-6 text-white ">
           Register Here!
         </h2>
 
+        <label className="label text-gray-600">Your Name</label>
         <input
           type="text"
           name="name"
           placeholder="Your Name"
           required
-          className="input input-bordered w-full mb-3"
+          className="input input-bordered w-full mb-3 bg-white border border-gray-800 text-black placeholder-gray-300"
         />
-
+        
+        <label className="label text-gray-600">Your Email</label>
         <input
           type="email"
           name="email"
           placeholder="Your Email"
           required
-          className="input input-bordered w-full mb-3"
+          className="input input-bordered w-full mb-3 bg-white border border-gray-800 text-black placeholder-gray-300"
         />
 
+
+        <label className="label text-gray-600">Photo URL</label>
         <input
           type="text"
           name="photoURL"
           placeholder="Photo URL"
-          className="input input-bordered w-full mb-3"
+          className="input input-bordered w-full mb-3 bg-white border border-gray-800 text-black placeholder-gray-300"
         />
 
+
+        <label className="label text-gray-600">Password</label>
         <input
           type="password"
           name="password"
           placeholder="Password"
           required
-          className="input input-bordered w-full mb-3"
+          className="input input-bordered w-full mb-3 bg-white border border-gray-800 text-black placeholder-gray-300"
         />
 
-        {error && <p className="text-red-200 text-sm mb-2">{error}</p>}
+        {error && <p className="text-red-300 text-sm mb-2">{error}</p>}
 
         <button
           type="submit"
-          className="btn bg-[#023047] hover:bg-[#03557d] text-white w-full"
+          className="btn w-full bg-[#023047] hover:bg-[#03557d] text-white font-semibold mb-3"
         >
           Register
         </button>
 
-        <p className="text-center text-white mt-4 text-sm">
+        <p className="text-center text-sm text-gray-300 mt-4">
           Already have an account?{" "}
-          <Link to="/login" className="text-yellow-300 hover:underline font-medium">
+          <Link
+            to="/login"
+            className="text-yellow-300 hover:underline font-semibold"
+          >
             Login
           </Link>
         </p>
-      </form>
+      </motion.form>
     </div>
   );
 };

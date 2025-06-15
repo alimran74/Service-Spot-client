@@ -164,63 +164,64 @@ const handleDelete = (id) => {
         </table>
       </div>
 
-      {/* Update Modal */}
-      {isUpdateModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 p-4">
-          <form
-            onSubmit={handleUpdate}
-            className="bg-white p-6 rounded-lg w-full max-w-md shadow-xl"
-          >
-            <h3 className="text-2xl font-semibold mb-5 text-center text-[#023047]">
-              Update Service
-            </h3>
+{/* Update Modal */}
+{isUpdateModalOpen && (
+  <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center z-50 p-4">
+    <form
+      onSubmit={handleUpdate}
+      className="bg-white bg-opacity-95 backdrop-blur-sm p-6 rounded-lg w-full max-w-md shadow-xl"
+    >
+      <h3 className="text-2xl font-semibold mb-5 text-center text-[#023047]">
+        Update Service
+      </h3>
 
-            <input
-              type="text"
-              className="input input-bordered w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
-              placeholder="Title"
-              value={updatedData.title || ""}
-              onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
-              required
-            />
+      <input
+        type="text"
+        className="input input-bordered w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
+        placeholder="Title"
+        value={updatedData.title || ""}
+        onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
+        required
+      />
 
-            <input
-              type="number"
-              min="0"
-              className="input input-bordered w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
-              placeholder="Price"
-              value={updatedData.price || ""}
-              onChange={(e) => setUpdatedData({ ...updatedData, price: e.target.value })}
-              required
-            />
+      <input
+        type="number"
+        min="0"
+        className="input input-bordered w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
+        placeholder="Price"
+        value={updatedData.price || ""}
+        onChange={(e) => setUpdatedData({ ...updatedData, price: e.target.value })}
+        required
+      />
 
-            <input
-              type="text"
-              className="input input-bordered w-full mb-6 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
-              placeholder="Category"
-              value={updatedData.category || ""}
-              onChange={(e) => setUpdatedData({ ...updatedData, category: e.target.value })}
-              required
-            />
+      <input
+        type="text"
+        className="input input-bordered w-full mb-6 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#219EBC]"
+        placeholder="Category"
+        value={updatedData.category || ""}
+        onChange={(e) => setUpdatedData({ ...updatedData, category: e.target.value })}
+        required
+      />
 
-            <div className="flex justify-between">
-              <button
-                type="submit"
-                className="btn bg-green-600 text-white hover:bg-green-700 px-4 py-2 rounded-md font-semibold transition-colors duration-200"
-              >
-                Update
-              </button>
-              <button
-                type="button"
-                className="btn bg-gray-400 text-white px-4 py-2 rounded-md font-semibold"
-                onClick={() => setIsUpdateModalOpen(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+      <div className="flex justify-between">
+        <button
+          type="submit"
+          className="btn bg-green-600 text-white hover:bg-green-700 px-4 py-2 rounded-md font-semibold transition-colors duration-200"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          className="btn bg-gray-400 text-white px-4 py-2 rounded-md font-semibold"
+          onClick={() => setIsUpdateModalOpen(false)}
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+)}
+
     </div>
   );
 };

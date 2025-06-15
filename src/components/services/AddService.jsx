@@ -45,69 +45,52 @@ const AddService = () => {
   };
 
   return (
-    <div className="bg-[#8ECAE6] min-h-screen py-10 px-4">
-      <div className="max-w-3xl mx-auto p-8 bg-[#219EBC] shadow-xl rounded-2xl transform transition-transform duration-300 hover:scale-105">
-        <h2 className="text-3xl font-extrabold text-center mb-8 text-[#023047]">
-          Add a New Service
+    <div className="bg-[#8ECAE6] min-h-screen py-16 px-4 flex items-center justify-center">
+      <div
+        className="w-full max-w-3xl mx-auto p-8 bg-white/30 backdrop-blur-xl shadow-2xl rounded-3xl border border-[#219EBC] animate-fade-in-down"
+      >
+        <h2 className="text-4xl font-bold text-center text-[#023047] mb-10">
+          🚀 Add a New Service
         </h2>
+
         <form
           onSubmit={handleAddService}
           className="grid grid-cols-1 gap-6"
         >
-          <input
-            type="text"
-            name="image"
-            placeholder="Image URL"
-            className="input input-bordered w-full"
-            required
-          />
-          <input
-            type="text"
-            name="title"
-            placeholder="Service Title"
-            className="input input-bordered w-full"
-            required
-          />
-          <input
-            type="text"
-            name="company"
-            placeholder="Company Name"
-            className="input input-bordered w-full"
-            required
-          />
-          <input
-            type="url"
-            name="website"
-            placeholder="Website URL"
-            className="input input-bordered w-full"
-            required
-          />
+          {[
+            { name: 'image', type: 'text', placeholder: 'Image URL' },
+            { name: 'title', type: 'text', placeholder: 'Service Title' },
+            { name: 'company', type: 'text', placeholder: 'Company Name' },
+            { name: 'website', type: 'url', placeholder: 'Website URL' },
+            { name: 'category', type: 'text', placeholder: 'Category' },
+            { name: 'price', type: 'number', placeholder: 'Price (BDT)' },
+          ].map(({ name, type, placeholder }) => (
+            <input
+              key={name}
+              name={name}
+              type={type}
+              placeholder={placeholder}
+              required
+              className="input input-bordered w-full bg-white/60 text-[#023047] placeholder:text-[#023047]/70 focus:outline-none focus:ring-2 focus:ring-[#219EBC] transition"
+            />
+          ))}
+
           <textarea
             name="description"
-            placeholder="Description"
-            className="textarea textarea-bordered w-full"
+            placeholder="Service Description"
             rows="4"
             required
+            className="textarea textarea-bordered w-full bg-white/60 text-[#023047] placeholder:text-[#023047]/70 focus:outline-none focus:ring-2 focus:ring-[#219EBC] transition"
           ></textarea>
-          <input
-            type="text"
-            name="category"
-            placeholder="Category"
-            className="input input-bordered w-full"
-            required
-          />
-          <input
-            type="number"
-            name="price"
-            placeholder="Price (BDT)"
-            className="input input-bordered w-full"
-            required
-          />
+
           <button
             type="submit"
-            className="btn bg-[#023047] hover:bg-[#03557d] text-white w-full text-lg font-semibold py-2 rounded-lg shadow-md transition-all duration-300"
             disabled={loading}
+            className="btn text-lg font-semibold bg-gradient-to-r from-[#023047] to-[#03557d] hover:from-[#03557d] hover:to-[#023047] text-white w-full py-3 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
+            {loading && (
+              <span className="loading loading-spinner loading-sm text-white"></span>
+            )}
             {loading ? 'Adding...' : 'Add Service'}
           </button>
         </form>

@@ -1,11 +1,14 @@
-import React, { use } from "react";
-import { Link, useNavigate } from "react-router";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router"; // Fixed: useRouter -> useNavigate from react-router-dom
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
+import Lottie from "lottie-react";
+import loginAnimation from "../assets/login-animation.json";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { signIn, signInWithGoogle } = use(AuthContext);
+  const { signIn, signInWithGoogle } = useContext(AuthContext); // ✅ Correct hook
+
   const handleLogIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,19 +16,17 @@ const Login = () => {
     const password = form.password.value;
     signIn(email, password)
       .then((result) => {
-        const user = result.user;
         toast.success("✅ Login successful");
         navigate("/");
       })
       .catch((error) => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        toast.error(`❌ ${errorMessage}`);
+        toast.error(`❌ ${error.message}`);
       });
   };
+
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(() => {
         toast.success("✅ Google Login successful");
         navigate("/");
       })
@@ -33,47 +34,58 @@ const Login = () => {
         toast.error(`❌ ${error.message}`);
       });
   };
+
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 bg-[#8ECAE6]">
-      <div className="card w-full max-w-sm shrink-0 shadow-2xl bg-[#219EBC]">
-        <h1 className="font-semibold text-2xl text-center pt-5 text-white">
+    <div className="min-h-screen bg-[#8ECAE6] flex flex-col md:flex-row items-center justify-center gap-10 px-4 py-8">
+      {/* Lottie Animation */}
+      <div className="w-full md:w-1/2 max-w-md">
+        <Lottie animationData={loginAnimation} loop={true} />
+      </div>
+
+      {/* Login Form */}
+      <div className="card w-full max-w-sm bg-[#219EBC] shadow-2xl rounded-xl">
+        <h1 className="text-3xl font-bold text-center pt-6 text-white">
           Login to Your Account
         </h1>
         <form onSubmit={handleLogIn} className="card-body">
-          <fieldset className="fieldset">
-            {/* email */}
-            <label className="label">Email</label>
+          <fieldset className="space-y-4">
+            {/* Email */}
+            <label className="label text-white">Email</label>
             <input
               name="email"
               type="email"
-              className="input"
-              placeholder="Email"
+              className="input input-bordered w-full"
+              placeholder="Enter your email"
+              required
             />
 
-            {/* password */}
-            <label className="label">Password</label>
+            {/* Password */}
+            <label className="label text-white">Password</label>
             <input
               name="password"
               type="password"
-              className="input"
-              placeholder="Password"
+              className="input input-bordered w-full"
+              placeholder="Enter your password"
+              required
             />
-            <div>
-              <a className="link link-hover">Forgot password?</a>
+
+            <div className="text-right">
+              <a className="link link-hover text-white">Forgot password?</a>
             </div>
 
+            {/* Login Button */}
             <button
               type="submit"
-              className="btn btn-neutral mt-4 w-full  bg-[#023047] hover:bg-[#6284e2d7] "
+              className="btn bg-[#023047] hover:bg-[#03557d] text-white w-full"
             >
               Login
             </button>
 
-            {/* google btn */}
+            {/* Google Button */}
             <button
               onClick={handleGoogleLogin}
               type="button"
-              className="btn bg-white text-black border-[#e5e5e5] shadow mt-2"
+              className="btn bg-white text-black border border-gray-300 shadow w-full"
             >
               <svg
                 aria-label="Google logo"
@@ -102,12 +114,16 @@ const Login = () => {
                   ></path>
                 </g>
               </svg>
-              Login with Google
+              <span className="ml-2">Login with Google</span>
             </button>
 
-            <p className="font-semibold text-center pt-6">
-              Don't have An Account ?{" "}
-              <Link className="text-white  hover:text-[#ffd903f1]" to="/register">
+            {/* Register Link */}
+            <p className="text-center text-white pt-4">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="text-yellow-300 hover:underline font-semibold"
+              >
                 Register
               </Link>
             </p>

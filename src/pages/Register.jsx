@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router"; // Fixed import
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import Lottie from "lottie-react";
+import registerAnimation from "../assets/register-animation.json";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -32,7 +34,7 @@ const Register = () => {
         updateUserProfile(name, photoURL)
           .then(() => {
             toast.success("✅ Registration Successful!");
-            navigate("/"); // Redirect to homepage or dashboard
+            navigate("/");
           })
           .catch(() => {
             toast.error("❌ Failed to update profile");
@@ -45,13 +47,20 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen  p-4 bg-[#8ECAE6]">
+    <div className="min-h-screen bg-[#8ECAE6] flex flex-col md:flex-row items-center justify-center px-4 py-10 gap-10">
+      
+      {/* Lottie Animation */}
+      <div className="w-full md:w-1/2 max-w-md">
+        <Lottie animationData={registerAnimation} loop={true} />
+      </div>
+
+      {/* Registration Form */}
       <form
         onSubmit={handleRegister}
-        className="bg-[#219EBC] p-6 rounded shadow-md w-full max-w-md"
+        className="bg-[#219EBC] w-full max-w-md p-6 rounded-lg shadow-lg"
       >
-        <h2 className="text-2xl font-bold mb-4 text-center text-white">
-          Register here !
+        <h2 className="text-3xl font-bold text-center mb-6 text-white">
+          Register Here!
         </h2>
 
         <input
@@ -85,18 +94,18 @@ const Register = () => {
           className="input input-bordered w-full mb-3"
         />
 
-        {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+        {error && <p className="text-red-200 text-sm mb-2">{error}</p>}
 
         <button
           type="submit"
-          className="btn btn-primary w-full bg-[#023047] hover:bg-[#6284e2d7]"
+          className="btn bg-[#023047] hover:bg-[#03557d] text-white w-full"
         >
           Register
         </button>
 
-        <p className="text-center mt-4 text-sm">
+        <p className="text-center text-white mt-4 text-sm">
           Already have an account?{" "}
-          <Link to="/login" className="text-white  hover:text-[#ffd903f1]">
+          <Link to="/login" className="text-yellow-300 hover:underline font-medium">
             Login
           </Link>
         </p>

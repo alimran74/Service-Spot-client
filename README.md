@@ -1,12 +1,78 @@
-# React + Vite
+# Service Spot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack service marketplace web application where users can add, browse, and review various services.
 
-Currently, two official plugins are available:
+## 🚀 Live Website
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌐 **Frontend**: [https://service-spot-2f7aa.web.app](https://service-spot-2f7aa.web.app)  
+🌐 **Backend**: [https://service-spot-server-beta.vercel.app](https://service-spot-server-beta.vercel.app)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 Project Purpose
+
+The goal of **Service Spot** is to provide a platform where users can:
+- Discover featured and categorized services
+- Post their own services
+- Leave and manage reviews for services
+- Filter, search, and update services easily
+- Build CRUD experience using the MERN stack
+
+---
+
+## 🔑 Key Features
+
+### 🧑‍💻 Client (React)
+- Firebase Authentication (Email/Password, Google)
+- Add Service (Private Route)
+- View All Services with:
+  - 🔍 Search
+  - 🎯 Filter by Category
+- See Featured Services on Homepage
+- Detailed Service Page with:
+  - Service Information
+  - User Reviews (view + post)
+- My Reviews Page:
+  - ✏️ Update or 🗑️ Delete reviews
+- Responsive UI with Tailwind & DaisyUI
+- Toast notifications with `react-toastify`
+- Route protection with `react-router-dom`
+
+### 🌐 Server (Node + Express + MongoDB)
+- REST API for services and reviews
+- Filter, search, and paginate services
+- Add/update/delete services and reviews
+- MongoDB aggregation for category listing
+- CORS and Express middleware enabled
+- Hosted on Vercel
+
+---
+
+## ⚙️ NPM Packages Used
+
+### Client Side
+- `react`
+- `react-dom`
+- `react-router-dom`
+- `firebase`
+- `axios`
+- `react-toastify`
+- `react-icons`
+- `react-rating`
+- `tailwindcss`
+- `daisyui`
+- `lodash.debounce`
+
+### Server Side
+- `express`
+- `cors`
+- `dotenv`
+- `mongodb`
+
+---
+
+📣 Author
+ Al Imran
+Frontend & Backend Developer from Bangladesh 🇧🇩
+
+

@@ -20,7 +20,7 @@ const AllServices = () => {
   // Fetch categories
   useEffect(() => {
     axios
-      .get("http://localhost:5000/categories")
+      .get("https://service-spot-server-beta.vercel.app/categories")
       .then((res) => setCategories(["All", ...res.data]))
       .catch((err) => console.error("Category fetch error:", err));
   }, []);
@@ -34,7 +34,7 @@ const AllServices = () => {
         queryParams.append("category", selectedCategory);
       }
 
-      const res = await axios.get(`http://localhost:5000/services?${queryParams.toString()}`);
+      const res = await axios.get(`https://service-spot-server-beta.vercel.app/services?${queryParams.toString()}`);
       setServices(res.data);
     } catch (err) {
       console.error("Service fetch error:", err);

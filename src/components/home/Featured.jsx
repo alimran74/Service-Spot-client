@@ -13,7 +13,7 @@ const Featured = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/services/featured")
+      .get("https://service-spot-server-beta.vercel.app/services/featured")
       .then((res) => setServices(res.data))
       .catch((err) => console.error("Error fetching featured services:", err));
   }, []);

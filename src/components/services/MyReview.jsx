@@ -14,14 +14,14 @@ const MyReview = () => {
     if (user?.email) {
       // 1. Fetch reviews for the user
       axios
-        .get(`http://localhost:5000/reviews?email=${user.email}`)
+        .get(`https://service-spot-server-beta.vercel.app/reviews?email=${user.email}`)
         .then(async (res) => {
           const reviewsWithServices = await Promise.all(
             res.data.map(async (review) => {
               // 2. For each review, fetch the corresponding service
               try {
                 const serviceRes = await axios.get(
-                  `http://localhost:5000/services/${review.serviceId}`
+                  `https://service-spot-server-beta.vercel.app/services/${review.serviceId}`
                 );
                 return {
                   ...review,
@@ -57,7 +57,7 @@ const MyReview = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/reviews/${id}`).then((res) => {
+        axios.delete(`https://service-spot-server-beta.vercel.app/reviews/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             toast.success("Review deleted");
             setReviews(reviews.filter((r) => r._id !== id));
@@ -73,7 +73,7 @@ const MyReview = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `http://localhost:5000/reviews/${editingReview._id}`,
+        `https://service-spot-server-beta.vercel.app/reviews/${editingReview._id}`,
         editingReview
       );
       if (res.data.modifiedCount > 0 || res.data.result?.modifiedCount > 0) {

@@ -15,7 +15,7 @@ const MyServices = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/services?email=${user.email}`)
+        .get(`https://service-spot-server-beta.vercel.app/services?email=${user.email}`)
         .then((res) => setServices(res.data))
         .catch((err) => console.error(err));
     }
@@ -33,7 +33,7 @@ const handleDelete = (id) => {
   }).then((result) => {
     if (result.isConfirmed) {
       axios
-        .delete(`http://localhost:5000/services/${id}`)
+        .delete(`https://service-spot-server-beta.vercel.app/services/${id}`)
         .then((res) => {
           if (res.data.deletedCount > 0) {
             Swal.fire("Deleted!", "Your service has been deleted.", "success");
@@ -64,7 +64,7 @@ const handleDelete = (id) => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/services/${selectedService._id}`,
+        `https://service-spot-server-beta.vercel.app/services/${selectedService._id}`,
         updatedData
       );
 

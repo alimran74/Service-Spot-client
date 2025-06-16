@@ -19,11 +19,11 @@ const ServiceDetails = () => {
 
   // Fetch service data
   useEffect(() => {
-    axios.get(`http://localhost:5000/services/${id}`)
+    axios.get(`https://service-spot-server-beta.vercel.app/services/${id}`)
     .then(res => setService(res.data))
     .catch(err => console.error('Service fetch error:', err));
 
-    axios.get(`http://localhost:5000/reviews/${id}`)
+    axios.get(`https://service-spot-server-beta.vercel.app/reviews/${id}`)
     .then(res => setReviews(res.data))
     .catch(err => console.error('Reviews fetch error:', err));
 }, [id]);
@@ -43,7 +43,7 @@ const ServiceDetails = () => {
       email: user.email,
     };
 
-    const res = await fetch('http://localhost:5000/reviews', {
+    const res = await fetch('https://service-spot-server-beta.vercel.app/reviews', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(reviewData),

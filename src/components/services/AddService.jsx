@@ -24,7 +24,7 @@ const AddService = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/services', {
+      const res = await fetch('https://service-spot-server-beta.vercel.app/services', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(service),

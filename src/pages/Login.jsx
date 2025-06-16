@@ -71,7 +71,7 @@ const Login = () => {
             <input
               name="password"
               type="password"
-              className="input input-bordered w-full bg-white border border-gray-400 text-white placeholder-gray-800"
+              className="input input-bordered w-full bg-white border border-gray-400 text-gray-800 placeholder-gray-800"
               placeholder="Enter your password"
               required
             />

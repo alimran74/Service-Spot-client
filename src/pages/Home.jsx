@@ -5,11 +5,15 @@ import Featured from "../components/home/Featured";
 import MeetOurPartners from "../components/home/MeetOurPartners";
 import PricingSection from "../components/home/PricingSection";
 import SystemWork from "../components/home/SystemWork";
+import { Helmet } from 'react-helmet-async';
 
 
 const Home = () => {
   return (
     <div>
+       <Helmet>
+        <title>Home | Service Spot</title>
+      
       <Banner />
       <Featured />
       <PricingSection />
@@ -17,6 +21,7 @@ const Home = () => {
       <CountUpStats />
       <SystemWork />
       <FAQ />
+      </Helmet>
     </div>
   );
 };

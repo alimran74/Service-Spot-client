@@ -12,14 +12,18 @@ const AuthLayout = () => {
       <Navbar />
       <ToastContainer position="top-center"></ToastContainer>
       <div className="min-h-[calc(100vh-116px)]">
-        <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
-                        <ClickSpark>
-                    <Outlet/>
-                    </ClickSpark>
-                    </FadeContent>
+        <FadeContent
+          blur={true}
+          duration={1000}
+          easing="ease-out"
+          initialOpacity={0}
+        >
+          <ClickSpark>
+            <Outlet />
+          </ClickSpark>
+        </FadeContent>
       </div>
       <Footer />
-      
     </div>
   );
 };

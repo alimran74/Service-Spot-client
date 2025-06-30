@@ -19,11 +19,12 @@ const Featured = () => {
   }, []);
 
   return (
-    <div className=" mx-auto px-4 py-12 bg-[#8ECAE6]">
+    <div className="mx-auto px-4 md:pt-20 bg-[#8ECAE6]">
       <h2 className="text-3xl font-bold text-center mb-10 text-[#023047]">
-        🔥 Featured Services🚀
+        🔥 Featured Services 🚀
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {services.map((service) => (
           <div
             key={service._id}
@@ -45,26 +46,26 @@ const Featured = () => {
                 ৳ {service.price}
               </p>
               <button
-  onClick={() => {
-    if (!user) {
-      toast.warning("🛑 Please login to view details!");
-    } else {
-      navigate(`/services/${service._id}`);
-    }
-  }}
-  className="mt-4 btn bg-[#023047] hover:bg-[#FFB703] text-white w-full transition duration-300"
-  style={{
-    boxShadow: '0 0 0px transparent',
-  }}
-  onMouseEnter={e => {
-    e.currentTarget.style.boxShadow = '0 0 12px 3px #FFB703';
-  }}
-  onMouseLeave={e => {
-    e.currentTarget.style.boxShadow = '0 0 0px transparent';
-  }}
->
-  See Details
-</button>
+                onClick={() => {
+                  if (!user) {
+                    toast.warning("🛑 Please login to view details!");
+                  } else {
+                    navigate(`/services/${service._id}`);
+                  }
+                }}
+                className="mt-4 btn bg-[#023047] hover:bg-[#FFB703] text-white w-full transition duration-300"
+                style={{
+                  boxShadow: "0 0 0px transparent",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = "0 0 12px 3px #FFB703";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = "0 0 0px transparent";
+                }}
+              >
+                See Details
+              </button>
             </div>
           </div>
         ))}

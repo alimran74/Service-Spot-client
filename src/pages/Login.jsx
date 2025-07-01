@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import Lottie from "lottie-react";
 import loginAnimation from "../assets/login-animation.json";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,6 +39,12 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-[#8ECAE6] flex flex-col md:flex-row items-center justify-center gap-10 px-4 py-8">
+      <Helmet>
+              <title>ServiceSpot | LogIn</title>
+              <meta name="description" content="Book trusted professionals for cleaning, plumbing, repairs & more with ServiceSpot." />
+              <meta name="keywords" content="cleaning services, home repair, plumbing, electrician, ServiceSpot" />
+              <link rel="canonical" href="https://service-spot-2f7aa.web.app/" />
+            </Helmet>
       {/* Lottie Animation */}
       <div className="w-full md:w-1/2 max-w-md">
         <Lottie animationData={loginAnimation} loop={true} />

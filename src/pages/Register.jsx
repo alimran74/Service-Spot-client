@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Lottie from "lottie-react";
 import { motion } from "framer-motion";
 import registerAnimation from "../assets/register-animation.json";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -49,6 +50,12 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-[#8ECAE6] flex flex-col md:flex-row items-center justify-center px-4 py-10 gap-8">
+      <Helmet>
+              <title>ServiceSpot | Registration</title>
+              <meta name="description" content="Book trusted professionals for cleaning, plumbing, repairs & more with ServiceSpot." />
+              <meta name="keywords" content="cleaning services, home repair, plumbing, electrician, ServiceSpot" />
+              <link rel="canonical" href="https://service-spot-2f7aa.web.app/" />
+            </Helmet>
       {/* Animation */}
       <div className="w-full md:w-1/2 max-w-md">
         <Lottie animationData={registerAnimation} loop={true} />

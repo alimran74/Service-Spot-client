@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
@@ -46,6 +47,12 @@ const AddService = () => {
 
   return (
     <div className="bg-[#8ECAE6] min-h-screen py-16 px-4 flex items-center justify-center">
+      <Helmet>
+              <title>ServiceSpot | Add Service</title>
+              <meta name="description" content="Book trusted professionals for cleaning, plumbing, repairs & more with ServiceSpot." />
+              <meta name="keywords" content="cleaning services, home repair, plumbing, electrician, ServiceSpot" />
+              <link rel="canonical" href="https://service-spot-2f7aa.web.app/" />
+            </Helmet>
       <div
         className="w-full max-w-3xl mx-auto p-8 bg-white/30 backdrop-blur-xl shadow-2xl rounded-3xl border border-[#219EBC] animate-fade-in-down"
       >

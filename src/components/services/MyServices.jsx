@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyServices = () => {
   const { user } = useContext(AuthContext);
@@ -88,6 +89,12 @@ const handleDelete = (id) => {
 
   return (
     <div className="p-6 min-h-screen bg-[#8ECAE6]">
+      <Helmet>
+              <title>ServiceSpot | My Service</title>
+              <meta name="description" content="Book trusted professionals for cleaning, plumbing, repairs & more with ServiceSpot." />
+              <meta name="keywords" content="cleaning services, home repair, plumbing, electrician, ServiceSpot" />
+              <link rel="canonical" href="https://service-spot-2f7aa.web.app/" />
+            </Helmet>
       <h2 className="text-3xl font-extrabold mb-6 text-center text-[#023047]">
         My Services ({services.length})
       </h2>

@@ -12,8 +12,11 @@ const Home = () => {
   return (
     <div>
        <Helmet>
-        <title>Home | Service Spot</title>
-        </Helmet>
+        <title>ServiceSpot | Home Cleaning & Repair Experts</title>
+        <meta name="description" content="Book trusted professionals for cleaning, plumbing, repairs & more with ServiceSpot." />
+        <meta name="keywords" content="cleaning services, home repair, plumbing, electrician, ServiceSpot" />
+        <link rel="canonical" href="https://service-spot-2f7aa.web.app/" />
+      </Helmet>
       
       <Banner />
       <Featured />

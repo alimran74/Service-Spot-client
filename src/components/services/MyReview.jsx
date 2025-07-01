@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const MyReview = () => {
   const { user } = useContext(AuthContext);
@@ -87,13 +88,19 @@ const MyReview = () => {
       } else {
         toast.info("No changes made");
       }
-    } catch (err) {
+    } catch (error) {
       toast.error("Update failed");
     }
   };
 
   return (
     <div className="p-6 bg-[#8ECAE6] min-h-screen">
+      <Helmet>
+              <title>ServiceSpot | My review</title>
+              <meta name="description" content="Book trusted professionals for cleaning, plumbing, repairs & more with ServiceSpot." />
+              <meta name="keywords" content="cleaning services, home repair, plumbing, electrician, ServiceSpot" />
+              <link rel="canonical" href="https://service-spot-2f7aa.web.app/" />
+            </Helmet>
       <h2 className="text-2xl font-bold text-center mb-6 text-[#023047]">
         My Reviews ({reviews.length})
       </h2>

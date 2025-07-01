@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import Rating from 'react-rating';
 import { FaStar, FaRegStar } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 
 const ServiceDetails = () => {
@@ -67,6 +68,12 @@ const ServiceDetails = () => {
 
   return (
     <div className="min-h-screen bg-[#8ECAE6] py-12 px-4">
+      <Helmet>
+              <title>ServiceSpot | ServiceDetails</title>
+              <meta name="description" content="Book trusted professionals for cleaning, plumbing, repairs & more with ServiceSpot." />
+              <meta name="keywords" content="cleaning services, home repair, plumbing, electrician, ServiceSpot" />
+              <link rel="canonical" href="https://service-spot-2f7aa.web.app/" />
+            </Helmet>
       {/* Service Info */}
       <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
         <img src={image} alt={title} className="w-full h-64 object-cover rounded-lg mb-6" />

@@ -39,9 +39,9 @@ const FAQ = () => {
   };
 
   return (
-    <div className="bg-[#8ECAE6] py-16">
+    <div className="bg-[#8ECAE6] md:px-4 py-16">
     <section
-      className="max-w-7xl mx-auto p-6 md:p-12 bg-[#8ECAE6] rounded-2xl shadow-neumorphism "
+      className="max-w-8xl  mx-auto p-6 md:p-12 bg-[#8ECAE6] rounded-2xl shadow-neumorphism "
       aria-label="Frequently Asked Questions"
     >
       <h2 className="text-4xl font-extrabold text-center text-[#023047] mb-10">

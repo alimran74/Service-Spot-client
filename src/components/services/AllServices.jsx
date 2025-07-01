@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useLocation } from "react-router";
 import { toast } from "react-toastify";
 import { debounce } from "lodash";
+import { Helmet } from "react-helmet-async";
 
 
 const AllServices = () => {
@@ -66,6 +67,12 @@ const AllServices = () => {
 
   return (
     <div className="bg-[#8ECAE6] px-4 py-12 min-h-screen">
+      <Helmet>
+              <title>ServiceSpot | All Services</title>
+              <meta name="description" content="Book trusted professionals for cleaning, plumbing, repairs & more with ServiceSpot." />
+              <meta name="keywords" content="cleaning services, home repair, plumbing, electrician, ServiceSpot" />
+              <link rel="canonical" href="https://service-spot-2f7aa.web.app/" />
+            </Helmet>
       
       <h2 className="text-4xl font-bold text-center mb-6 text-[#023047]">🛠 All Services</h2>
 

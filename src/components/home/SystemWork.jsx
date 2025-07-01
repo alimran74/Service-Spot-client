@@ -46,7 +46,7 @@ const SystemWork = () => {
   ];
 
   return (
-    <section className="bg-[#8ECAE6] py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#8ECAE6] py-12 px-4 sm:px-6 lg:px-8">
       <h3 className="text-3xl font-bold text-center text-[#023047] mb-12">
         This Is How Our System Works
       </h3>

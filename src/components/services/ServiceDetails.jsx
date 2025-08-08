@@ -76,7 +76,16 @@ const ServiceDetails = () => {
             </Helmet>
       {/* Service Info */}
       <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
-        <img src={image} alt={title} className="w-full h-64 object-cover rounded-lg mb-6" />
+        <img
+              src={`https://res.cloudinary.com/dhcpuspks/image/fetch/q_auto,f_auto,w_800/${image}`}
+              alt={service.title}
+              onError={(e) => {
+                e.currentTarget.onerror = null; // prevent infinite loop
+                e.currentTarget.src = "/fallback-image.jpg"; // path relative to public folder
+              }}
+              className="w-full h-64 object-cover rounded-lg mb-6"
+            />
+        
         <h2 className="text-3xl font-bold text-[#023047] mb-4">{title}</h2>
         <p className="text-gray-700 mb-4">{description}</p>
         <div className="space-y-2 text-[#333]">

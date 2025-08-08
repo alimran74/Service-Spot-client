@@ -123,7 +123,7 @@ const AllServices = () => {
               className="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300"
             >
               <img
-                src={service.image}
+                src={`https://res.cloudinary.com/dhcpuspks/image/fetch/q_auto,f_auto,w_800/${service.image}`}
                 alt={service.title}
                 className="h-48 w-full object-cover"
               />

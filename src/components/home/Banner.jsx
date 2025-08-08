@@ -6,25 +6,25 @@ const Banner = () => {
   const slides = [
     {
       id: "slide1",
-      src: "https://i.ibb.co/gbpsvJtj/full-shot-man-pouring-paint.png",
+      src: "https://res.cloudinary.com/dhcpuspks/image/fetch/q_auto,f_auto,w_1920/https://i.ibb.co/gbpsvJtj/full-shot-man-pouring-paint.png",
       title: "Trusted Home Services",
       subtitle: "Book top-rated cleaners, electricians, and more — fast and easy.",
     },
     {
       id: "slide2",
-      src: "https://i.ibb.co/hxQJFHn4/middle-aged-woman-wearing-apron-rubber-gloves-holding-bucket-with-cleaning-tools.png",
+      src: "https://res.cloudinary.com/dhcpuspks/image/fetch/q_auto,f_auto,w_1920/https://i.ibb.co/hxQJFHn4/middle-aged-woman-wearing-apron-rubber-gloves-holding-bucket-with-cleaning-tools.png",
       title: "Stress-Free Repairs",
       subtitle: "Get your plumbing or AC fixed on time with zero hassle.",
     },
     {
       id: "slide3",
-      src: "https://i.ibb.co/HDFxR9tQ/home-automation-with-device.png",
+      src: "https://res.cloudinary.com/dhcpuspks/image/fetch/q_auto,f_auto,w_1920/https://i.ibb.co/HDFxR9tQ/home-automation-with-device.png",
       title: "Secure & Verified Providers",
       subtitle: "Our professionals are background-checked and highly rated.",
     },
     {
       id: "slide4",
-      src: "https://i.ibb.co/232zVkVS/hardworking-man-doing-his-job-woodshop.png",
+      src: "https://res.cloudinary.com/dhcpuspks/image/fetch/q_auto,f_auto,w_1920/https://i.ibb.co/232zVkVS/hardworking-man-doing-his-job-woodshop.png",
       title: "Affordable Pricing",
       subtitle: "Transparent quotes with no hidden fees. Book confidently.",
     },

@@ -9,7 +9,7 @@ import SystemWork from "../components/home/SystemWork";
 import { Helmet } from 'react-helmet-async';
 import Testimonials from "../components/home/Testimonials";
 import BlogSection from "../components/home/BlogSection";
-import Chatbot from "../components/home/Chatbot";
+
 
 
 const Home = () => {

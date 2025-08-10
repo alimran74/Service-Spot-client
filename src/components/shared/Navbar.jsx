@@ -75,11 +75,11 @@ const Navbar = () => {
       <div className="flex items-center justify-between px-4 py-2 ">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img
+         <NavLink to='/'> <img
             src="https://i.ibb.co/QvjZgYRG/6499901.png"
             alt="Logo"
             className="h-10 w-auto"
-          />
+          /></NavLink>
           <span className="text-xl font-bold">ServiceSpot</span>
         </div>
 

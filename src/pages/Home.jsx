@@ -7,6 +7,7 @@ import MeetOurPartners from "../components/home/MeetOurPartners";
 import PricingSection from "../components/home/PricingSection";
 import SystemWork from "../components/home/SystemWork";
 import { Helmet } from 'react-helmet-async';
+import Testimonials from "../components/home/Testimonials";
 
 
 const Home = () => {
@@ -24,6 +25,7 @@ const Home = () => {
       <PricingSection />
       <MeetOurPartners />
       <CountUpStats />
+      <Testimonials/>
       <InteractiveServiceFinder/>
       <SystemWork />
       <FAQ />

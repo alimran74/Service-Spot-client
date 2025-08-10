@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import Loader from '../pages/Loader';
 import ClickSpark from '../components/shared/ClickSpark';
 import FadeContent from '../components/shared/FadeContent';
+import Chatbot from '../components/home/Chatbot';
 
 const MainLayout = () => {
   const navigation = useNavigation();
@@ -23,6 +24,7 @@ const MainLayout = () => {
             <Outlet />
           </ClickSpark>
         </FadeContent>
+        <Chatbot/>
       </div>
       <Footer />
     </div>

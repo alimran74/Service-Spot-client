@@ -8,6 +8,7 @@ import PricingSection from "../components/home/PricingSection";
 import SystemWork from "../components/home/SystemWork";
 import { Helmet } from 'react-helmet-async';
 import Testimonials from "../components/home/Testimonials";
+import BlogSection from "../components/home/BlogSection";
 
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
       <InteractiveServiceFinder/>
       <SystemWork />
       <FAQ />
+      <BlogSection/>
       
     </div>
   );
